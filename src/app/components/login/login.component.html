@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-9 mx-auto">
-          <h1 class="mb-4">Register</h1>
+          <h1 class="mb-4">Login</h1>
           <!-- <ul class="list-inline">
             <li class="list-inline-item"><a class="text-default" href="">Home
                 &nbsp; &nbsp; /</a></li>
@@ -74,11 +74,11 @@
           <form method="POST" action="#" class="form-border">
             <div class="form-group">
               <label for="email">Your Email (Required)</label>
-              <input type="email" #email name="email" id="email" value="avi@gmail.com" class="form-control text-center" placeholder="avi@xyz.com" required>
+              <input type="email" #email value="avi@gmail.com" name="email" id="email" class="form-control text-center" placeholder="avi@xyz.com" required>
             </div>
             <div class="form-group">
               <label for="email">Your Password (Required)</label>
-              <input type="password" #password name="password" value="123456" id="password" class="form-control text-center" placeholder="Password" required>
+              <input type="password" #password value="123456" name="password" id="password" class="form-control text-center" placeholder="Password" required>
             </div>
             <!-- <div class="form-group">
               <label for="email">Reason For Contact</label>
@@ -88,9 +88,11 @@
               <label for="message">Your Message Here</label>
               <textarea name="message" id="message" class="form-control" placeholder="Lorem ipsum dolor sit amet..."></textarea>
             </div> -->
-            <button type="button" (click)="fauth.registerWithEmailPassword(email.value, password.value)"  class="btn btn-block btn-primary">Register</button>
-            <hr class="m-1">
-            <button type="button" (click)="fauth.logInWithGoogle()" class="btn btn-block btn-primary">Register With Google</button>
+            <button type="button" (click)="this.fauth.logInWithEmailPassword(email.value, password.value)" class="btn btn-primary">Login</button>
+            <br><br>
+            <button type="button" (click)="this.fauth.logInWithGoogle()" class="btn btn-primary">Login With Google</button>
+            <hr class="m-2">
+            <a  href="/forgot-pass">Forgot Password</a>
           </form>
         </div>
       </div>

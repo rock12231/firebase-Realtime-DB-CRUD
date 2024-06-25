@@ -1,0 +1,12 @@
+<div class="m-5 p-5">
+    <br><br><br><br><br>
+<h2>Authentication</h2>
+<button (click)="signInWithGoogle()">Sign in with Google</button>
+<div *ngIf="user">
+  <h3>Welcome, {{ user.displayName }}</h3>
+    <img [src]="user.photoURL" alt="user photo">
+    <br>
+    <div>{{user|json}}</div>
+  <button (click)="signOut()">Sign out</button>
+</div>
+</div>

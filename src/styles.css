@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.form-border{
+    border: 1px solid #4FD675;
+    border-radius: 18px;
+    padding: 10px;
+}

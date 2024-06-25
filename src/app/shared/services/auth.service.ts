@@ -121,24 +121,4 @@ export class AuthService {
     });
   }
 
-  // Sign in with Google
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
-
-  // Auth logic to run auth providers
-AuthLogin(provider: auth.AuthProvider) {
-  return this.afAuth
-    .signInWithPopup(provider)
-    .then((result) => {
-      this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
-      });
-      this.SetUserData(result.user);
-    })
-    .catch((error) => {
-      window.alert(error);
-    });
-}
-
 }
