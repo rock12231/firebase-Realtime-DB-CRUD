@@ -1,10 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/guard/auth.guard';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { NgModule } from '@angular/core';
 import { TestComponent } from './components/test/test.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
@@ -20,19 +15,14 @@ export const routes: Routes = [
   { path: 'new', component: AuthenticationComponent},
 
   // { path: '', component: DashboardComponent, canActivate: [AuthGuard],
-    // children: [{ path: 'feed', component: HackpostComponent, canActivate: [AuthGuard] },]
+  //   children: [{ path: 'feed', component: HackpostComponent, canActivate: [AuthGuard] },]
   // },
+
   { path: 'dash-board', component: DashBoardComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-
-  // { path: 'sign-in', component: SignInComponent },
-  // { path: 'register-user', component: SignUpComponent },
-  // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  // { path: 'forgot-password', component: ForgotPasswordComponent },
-  // { path: 'verify-email-address', component: VerifyEmailComponent },
 
 ];
 

@@ -3,8 +3,7 @@ import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, create
 import { Auth } from '@angular/fire/auth';
 import { User } from '../services/user';
 import { Router } from '@angular/router';
-import { Database, ref, push, remove, update, onValue, set } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { Database, ref, set } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +20,28 @@ export class FirebaseService {
   {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
+    // auth.onAuthStateChanged((user) => {
+    //   if (user) {
+    //     this.userData = user;
+    //     localStorage.setItem('user', JSON.stringify(user));
+    //     JSON.parse(localStorage.getItem('user')!);
+    //   } else {
+    //     localStorage.setItem('user', 'null');
+    //     JSON.parse(localStorage.getItem('user')!);
+    //   }
+    // });
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(user));
-        JSON.parse(localStorage.getItem('user')!);
+        if (typeof window !== 'undefined' && window.localStorage) {
+          localStorage.setItem('user', JSON.stringify(user));
+          JSON.parse(localStorage.getItem('user')!);
+        }
       } else {
-        localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
+        if (typeof window !== 'undefined' && window.localStorage) {
+          localStorage.setItem('user', 'null');
+          JSON.parse(localStorage.getItem('user')!);
+        }
       }
     });
   }
@@ -86,14 +99,27 @@ export class FirebaseService {
     this.auth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
+      // set User to null
+      this.userData = null;
+
     });
   }
 
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null ? true : false;
-  }
+  // get isLoggedIn(): boolean {
+  //   // if (typeof localStorage !== 'undefined') {
+  //   const user = JSON.parse(typeof localStorage.getItem('user')!);
+  //   return user !== null ? true : false;
+  //   // }
+  // }
 
+  get isLoggedIn(): boolean {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const user = JSON.parse(localStorage.getItem('user')!);
+      return user !== null;
+    }
+    return false;
+  }
+  
   SetUserData(user: any) {
     // const userRef: AngularFirestoreDocument<any> = this.afs.doc(
     //   `users/${user.uid}`
