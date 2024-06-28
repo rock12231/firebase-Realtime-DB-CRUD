@@ -3,7 +3,7 @@ import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, create
 import { Auth } from '@angular/fire/auth';
 import { User } from '../services/user';
 import { Router } from '@angular/router';
-import { Database, ref, set } from '@angular/fire/database';
+import { Database, ref, set, update } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'

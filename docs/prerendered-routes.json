@@ -1,0 +1,11 @@
+{
+  "routes": [
+    "/",
+    "/dash-board",
+    "/login",
+    "/new",
+    "/profile",
+    "/register",
+    "/test"
+  ]
+}
